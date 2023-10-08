@@ -9,10 +9,17 @@ import SwiftUI
 
 struct DismissButton: View {
     var body: some View {
-        Image(systemName: "xmark")
-            .imageScale(.medium)
-            .frame(width: 44, height: 44)
-            .foregroundColor(Color("mainColor"))
+        ZStack {
+            Circle()
+                .frame(width: 30, height: 30)
+                .opacity(0.8)
+                .foregroundColor(.white)
+            
+            Image(systemName: "xmark")
+                .imageScale(.medium)
+                .frame(width: 44, height: 44)
+                .foregroundColor(Color("mainColor"))
+        }
     }
 }
 

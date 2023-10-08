@@ -7,22 +7,6 @@
 
 import Foundation
 
-struct MockData {
-    static let sampleItem = MenuItem(id: 00001, title: "Burger", restaurantChain: "MacDuck", image: "menuItemPlaceholderImage")
-    static let sampleItems = [sampleItem, sampleItem, sampleItem]
-    
-    static let sampleNutrient = Nutrient(name: "Fat",
-                                         amount: 30,
-                                         unit: "g",
-                                         percentOfDailyNeeds: 35)
-    
-    static let sampleNutrients = Nutrition(nutrients: [sampleNutrient, sampleNutrient])
-    
-    static let sampleMenuItemInformation = MenuItemInformation(nutrition: sampleNutrients,
-                                                               price: 100,
-                                                               servings: nil)
-}
-
 struct MenuItems: Decodable {
     var menuItems: [MenuItem]
     
@@ -79,7 +63,8 @@ struct Nutrition: Decodable {
     }
 }
 
-struct Nutrient: Decodable{
+struct Nutrient: Decodable, Identifiable{
+    var id = UUID()
     var name: String?
     var amount: Float?
     var unit: String?

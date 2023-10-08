@@ -6,7 +6,7 @@
 //
 
 import SwiftUI
-//
+
 //final class ItemDetailViewModel: ObservableObject {
 //    
 //    var menuItem: MenuItem

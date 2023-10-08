@@ -9,12 +9,13 @@ import SwiftUI
 
 struct AddToCartButton: View {
     
-    var price: Float
+    var text: LocalizedStringKey
     
     var body: some View {
         HStack {
-            Text("Add To Cart - \(price , specifier: "%.2f") $")
+            Text(text)
                 .frame(width: 200,height: 70)
+                .foregroundColor(.white)
                 .background(Color("mainColor"))
                 .cornerRadius(10)
         }
@@ -23,6 +24,6 @@ struct AddToCartButton: View {
 
 struct AddToCartButton_Previews: PreviewProvider {
     static var previews: some View {
-        AddToCartButton(price: 10.5)
+        AddToCartButton(text: "Add To Cart - 10.5 $")
     }
 }

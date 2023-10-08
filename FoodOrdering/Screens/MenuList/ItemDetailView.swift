@@ -14,22 +14,27 @@ struct ItemDetailView: View {
     @State var itemInformation: MenuItemInformation? = nil
     
     var body: some View {
-        VStack {
+        VStack(spacing: 15) {
             MenuItemImage(imageUrl: menuItem.image ?? "")
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 300, height: 170)
             
             Text(menuItem.title ?? "")
+                .fixedSize(horizontal: false, vertical: true)
                 .font(.title2)
                 .fontWeight(.bold)
             
-            List(itemInformation?.nutrition?.nutrients ?? [Nutrient](), id: \.amount) { nutrient in
+            List(itemInformation?.nutrition?.nutrients ?? [Nutrient]()) { nutrient in
                 NutrientsView(nutrient: nutrient)
             }
             
             Text("Calories: \(itemInformation?.nutrition?.calories ?? 0.0, specifier: "%.1f")")
             
-            AddToCartButton(price: itemInformation?.price ?? 10.0)
+            Button {
+                
+            } label: {
+                AddToCartButton(text: "Add To Cart - \((itemInformation?.price ?? 10.0), specifier: "%.2f") $")
+            }
             
             .onAppear() {
                 NetworkManager.shared.loadMenuItemInformation(itemId: menuItem.id ?? 1) {
@@ -38,10 +43,9 @@ struct ItemDetailView: View {
                 }
             }
         }
-//        .frame(width: 300, height: 525)
         .overlay(alignment: .topTrailing) {
             Button {
-                
+                isShowingDetailView = false
             } label: {
                 DismissButton()
             }
