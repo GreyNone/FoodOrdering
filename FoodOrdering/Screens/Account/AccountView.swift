@@ -45,6 +45,7 @@ struct AccountView: View {
                 } label: {
                     ConfirmButton()
                 }
+                .padding(.bottom, 20)
                 
                 .navigationTitle("Your Account")
             }

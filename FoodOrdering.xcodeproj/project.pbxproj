@@ -29,6 +29,8 @@
 		971746ED2AD3085F00E1CF89 /* AccountViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971746EC2AD3085F00E1CF89 /* AccountViewModel.swift */; };
 		971746F02AD30E0800E1CF89 /* Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971746EF2AD30E0800E1CF89 /* Alerts.swift */; };
 		971746F52AD345F100E1CF89 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971746F42AD345F100E1CF89 /* MockData.swift */; };
+		971746FA2AD4043F00E1CF89 /* EmptyOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971746F92AD4043F00E1CF89 /* EmptyOrderView.swift */; };
+		971746FC2AD485A400E1CF89 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971746FB2AD485A400E1CF89 /* Order.swift */; };
 		97DC71C02AD1D1F40055D9B0 /* ItemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DC71BF2AD1D1F40055D9B0 /* ItemDetailViewModel.swift */; };
 		97DC71C32AD1DAC40055D9B0 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DC71C22AD1DAC40055D9B0 /* DismissButton.swift */; };
 		97DC71C52AD1DCD80055D9B0 /* AddToCartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DC71C42AD1DCD80055D9B0 /* AddToCartButton.swift */; };
@@ -57,6 +59,8 @@
 		971746EC2AD3085F00E1CF89 /* AccountViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewModel.swift; sourceTree = "<group>"; };
 		971746EF2AD30E0800E1CF89 /* Alerts.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alerts.swift; sourceTree = "<group>"; };
 		971746F42AD345F100E1CF89 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
+		971746F92AD4043F00E1CF89 /* EmptyOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyOrderView.swift; sourceTree = "<group>"; };
+		971746FB2AD485A400E1CF89 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		97DC71BF2AD1D1F40055D9B0 /* ItemDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewModel.swift; sourceTree = "<group>"; };
 		97DC71C22AD1DAC40055D9B0 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
 		97DC71C42AD1DCD80055D9B0 /* AddToCartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartButton.swift; sourceTree = "<group>"; };
@@ -153,6 +157,7 @@
 		970DBB802AD05595005BF561 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				971746F82AD4041100E1CF89 /* View */,
 				97DC71C12AD1DAB80055D9B0 /* Button */,
 				970DBB8D2AD190A1005BF561 /* Image */,
 				970DBB8C2AD19098005BF561 /* Cells */,
@@ -186,6 +191,7 @@
 				970DBB712AD03A41005BF561 /* MenuItem.swift */,
 				971746E82AD2E5CE00E1CF89 /* UserData.swift */,
 				971746F42AD345F100E1CF89 /* MockData.swift */,
+				971746FB2AD485A400E1CF89 /* Order.swift */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -213,6 +219,14 @@
 				971746EF2AD30E0800E1CF89 /* Alerts.swift */,
 			);
 			path = Alerts;
+			sourceTree = "<group>";
+		};
+		971746F82AD4041100E1CF89 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				971746F92AD4043F00E1CF89 /* EmptyOrderView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		97DC71C12AD1DAB80055D9B0 /* Button */ = {
@@ -310,6 +324,7 @@
 				971746ED2AD3085F00E1CF89 /* AccountViewModel.swift in Sources */,
 				970DBB8B2AD17DFC005BF561 /* MenuItemImage.swift in Sources */,
 				97DC71C32AD1DAC40055D9B0 /* DismissButton.swift in Sources */,
+				971746FA2AD4043F00E1CF89 /* EmptyOrderView.swift in Sources */,
 				971746F52AD345F100E1CF89 /* MockData.swift in Sources */,
 				970DBB762AD04C81005BF561 /* NetworkManager.swift in Sources */,
 				970DBB5E2ACF440B005BF561 /* FoodOrderingTabView.swift in Sources */,
@@ -318,6 +333,7 @@
 				971746EB2AD2E88000E1CF89 /* ConfirmButton.swift in Sources */,
 				971746E92AD2E5CE00E1CF89 /* UserData.swift in Sources */,
 				970DBB5C2ACF440B005BF561 /* FoodOrderingApp.swift in Sources */,
+				971746FC2AD485A400E1CF89 /* Order.swift in Sources */,
 				970DBB722AD03A41005BF561 /* MenuItem.swift in Sources */,
 				970DBB8F2AD1916A005BF561 /* ItemDetailView.swift in Sources */,
 				970DBB7B2AD04CFE005BF561 /* MoyaService.swift in Sources */,

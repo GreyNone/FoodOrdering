@@ -13,17 +13,20 @@ struct MenuListView: View {
     
     var body: some View {
         NavigationStack {
-            SegmentedView()
+//            SegmentedView()
             List(menuListViewModel.menuItems) { item in
                 MenuListCell(menuItem: item)
                     .onTapGesture {
                         menuListViewModel.selectedMenuItem = item
                     }
+                    .onAppear() {
+                        menuListViewModel.getMoreMenuItems(currentMenuItem: item)
+                    }
             }
             .navigationTitle("Menu List")
         }
         .onAppear() {
-            menuListViewModel.getMenuItems()
+            menuListViewModel.getMenuItems(menuType: menuListViewModel.currentMenuType)
         }
         .sheet(isPresented: $menuListViewModel.isShowingDetailView) {
             ItemDetailView(menuItem: menuListViewModel.selectedMenuItem ?? MenuItem(),
@@ -38,20 +41,20 @@ struct FoodListView_Previews: PreviewProvider {
     }
 }
 
-struct SegmentedView: View {
-    
-    @State var selectedFood = ""
-    var foodItem = ["Burger", "Sushi", "Pizza"]
-    
-    var body: some View {
-        VStack {
-            Picker("Select your food", selection: $selectedFood) {
-                ForEach(foodItem, id: \.self) {
-                    Text($0)
-                }
-            }
-            .colorMultiply(Color("mainColor"))
-            .pickerStyle(.segmented)
-        }
-    }
-}
+//struct SegmentedView: View {
+//
+//    @State var selectedFood = ""
+//    var foodItem = ["Burger", "Sushi", "Pizza"]
+//
+//    var body: some View {
+//        VStack {
+//            Picker("Select your food", selection: $selectedFood) {
+//                ForEach(foodItem, id: \.self) {
+//                    Text($0)
+//                }
+//            }
+//            .colorMultiply(Color("mainColor"))
+//            .pickerStyle(.segmented)
+//        }
+//    }
+//}

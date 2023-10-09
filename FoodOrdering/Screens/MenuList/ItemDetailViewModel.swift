@@ -7,9 +7,12 @@
 
 import SwiftUI
 
-//final class ItemDetailViewModel: ObservableObject {
-//    
-//    var menuItem: MenuItem
-//    @Published
-//}
+final class ItemDetailViewModel: ObservableObject {
+    
+    var menuItem: MenuItem?
+    @Published var isShowingDetailView: Bool?
+    @Published var itemInformation: MenuItemInformation? = nil
+    @EnvironmentObject var order: Order
+    
+}
 

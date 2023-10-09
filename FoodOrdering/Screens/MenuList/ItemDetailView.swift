@@ -12,6 +12,7 @@ struct ItemDetailView: View {
     var menuItem: MenuItem
     @Binding var isShowingDetailView: Bool
     @State var itemInformation: MenuItemInformation? = nil
+    @EnvironmentObject var order: Order
     
     var body: some View {
         VStack(spacing: 15) {
@@ -27,11 +28,13 @@ struct ItemDetailView: View {
             List(itemInformation?.nutrition?.nutrients ?? [Nutrient]()) { nutrient in
                 NutrientsView(nutrient: nutrient)
             }
+            .listStyle(.plain)
             
             Text("Calories: \(itemInformation?.nutrition?.calories ?? 0.0, specifier: "%.1f")")
             
             Button {
-                
+                order.addToOrder(item: menuItem)
+                isShowingDetailView = false
             } label: {
                 AddToCartButton(text: "Add To Cart - \((itemInformation?.price ?? 10.0), specifier: "%.2f") $")
             }
