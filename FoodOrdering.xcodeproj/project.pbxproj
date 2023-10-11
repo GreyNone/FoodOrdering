@@ -31,6 +31,7 @@
 		971746F52AD345F100E1CF89 /* MockData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971746F42AD345F100E1CF89 /* MockData.swift */; };
 		971746FA2AD4043F00E1CF89 /* EmptyOrderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971746F92AD4043F00E1CF89 /* EmptyOrderView.swift */; };
 		971746FC2AD485A400E1CF89 /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971746FB2AD485A400E1CF89 /* Order.swift */; };
+		971746FE2AD5BD9100E1CF89 /* CartViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 971746FD2AD5BD9100E1CF89 /* CartViewModel.swift */; };
 		97DC71C02AD1D1F40055D9B0 /* ItemDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DC71BF2AD1D1F40055D9B0 /* ItemDetailViewModel.swift */; };
 		97DC71C32AD1DAC40055D9B0 /* DismissButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DC71C22AD1DAC40055D9B0 /* DismissButton.swift */; };
 		97DC71C52AD1DCD80055D9B0 /* AddToCartButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 97DC71C42AD1DCD80055D9B0 /* AddToCartButton.swift */; };
@@ -61,6 +62,7 @@
 		971746F42AD345F100E1CF89 /* MockData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockData.swift; sourceTree = "<group>"; };
 		971746F92AD4043F00E1CF89 /* EmptyOrderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyOrderView.swift; sourceTree = "<group>"; };
 		971746FB2AD485A400E1CF89 /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
+		971746FD2AD5BD9100E1CF89 /* CartViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CartViewModel.swift; sourceTree = "<group>"; };
 		97DC71BF2AD1D1F40055D9B0 /* ItemDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemDetailViewModel.swift; sourceTree = "<group>"; };
 		97DC71C22AD1DAC40055D9B0 /* DismissButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DismissButton.swift; sourceTree = "<group>"; };
 		97DC71C42AD1DCD80055D9B0 /* AddToCartButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToCartButton.swift; sourceTree = "<group>"; };
@@ -141,6 +143,7 @@
 			isa = PBXGroup;
 			children = (
 				970DBB6F2ACF449A005BF561 /* CartView.swift */,
+				971746FD2AD5BD9100E1CF89 /* CartViewModel.swift */,
 			);
 			path = Cart;
 			sourceTree = "<group>";
@@ -189,8 +192,8 @@
 			isa = PBXGroup;
 			children = (
 				970DBB712AD03A41005BF561 /* MenuItem.swift */,
-				971746E82AD2E5CE00E1CF89 /* UserData.swift */,
 				971746F42AD345F100E1CF89 /* MockData.swift */,
+				971746E82AD2E5CE00E1CF89 /* UserData.swift */,
 				971746FB2AD485A400E1CF89 /* Order.swift */,
 			);
 			path = Data;
@@ -331,6 +334,7 @@
 				970DBB912AD1965A005BF561 /* NutrientsView.swift in Sources */,
 				970DBB892AD168DE005BF561 /* CacheManager.swift in Sources */,
 				971746EB2AD2E88000E1CF89 /* ConfirmButton.swift in Sources */,
+				971746FE2AD5BD9100E1CF89 /* CartViewModel.swift in Sources */,
 				971746E92AD2E5CE00E1CF89 /* UserData.swift in Sources */,
 				970DBB5C2ACF440B005BF561 /* FoodOrderingApp.swift in Sources */,
 				971746FC2AD485A400E1CF89 /* Order.swift in Sources */,

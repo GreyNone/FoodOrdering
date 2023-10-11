@@ -11,9 +11,15 @@ final class Order: ObservableObject {
     
     @Published var orderItems: [MenuItem] = []
     
+    var totalOrderPrice: Double {
+        Double(orderItems.count) * 10.0
+    }
+    
     func addToOrder(item: MenuItem) {
         orderItems.append(item)
     }
     
-    func removeFromOrder
+    func removeFromOrder(offsets: IndexSet) {
+         orderItems.remove(atOffsets: offsets)
+    }
 }

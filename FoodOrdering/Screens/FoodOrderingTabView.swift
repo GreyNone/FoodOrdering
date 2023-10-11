@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct FoodOrderingTabView: View {
+    
+    @EnvironmentObject var order: Order
     var body: some View {
         TabView {
             MenuListView()
@@ -19,6 +21,7 @@ struct FoodOrderingTabView: View {
                 .tabItem {
                     Label("Cart", systemImage: "cart.circle.fill")
                 }
+                .badge(order.orderItems.count)
             
             AccountView()
                 .tabItem {
@@ -34,7 +37,12 @@ struct FoodOrderingTabView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        FoodOrderingTabView()
+        FoodOrderingTabView().environmentObject({ () -> Order in
+            let enviromentObject = Order()
+            enviromentObject.orderItems = MockData.sampleItems
+            return enviromentObject
+        } () )
             .preferredColorScheme(.dark)
+        
     }
 }

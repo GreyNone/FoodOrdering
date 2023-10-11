@@ -27,6 +27,7 @@ struct MenuListCell: View {
                     .fontWeight(.thin)
             }
         }
+        .listRowSeparator(.hidden)
     }
     
 }

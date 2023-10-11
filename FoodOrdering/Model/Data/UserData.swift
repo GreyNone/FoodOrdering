@@ -13,7 +13,6 @@ struct UserData: Codable {
     var lastName = ""
     var phoneNumber = ""
     var email = ""
-    var birthDate = Date()
     var streetAddress = ""
     var floor = ""
     var apartment = ""

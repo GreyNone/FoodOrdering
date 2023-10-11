@@ -10,6 +10,7 @@ import SwiftUI
 struct CartView: View {
     
     @EnvironmentObject var order: Order
+//    @StateObject var cartViewModel = CartViewModel()
     
     var body: some View {
         NavigationStack {
@@ -20,7 +21,7 @@ struct CartView: View {
                             MenuListCell(menuItem: item)
                         }
                         .onDelete { indexSet in
-                            order.orderItems.remove(atOffsets: indexSet)
+                            order.removeFromOrder(offsets: indexSet)
                         }
                     }
                     .listStyle(.plain)
@@ -28,7 +29,7 @@ struct CartView: View {
                     Button {
                         
                     } label: {
-                        AddToCartButton(text: "Check out order - \(10.0 , specifier: "%.2f") $")
+                        AddToCartButton(text: "Check out order - \(order.totalOrderPrice , specifier: "%.2f") $")
                     }
                     .padding(.bottom, 25)
                 }
@@ -44,6 +45,12 @@ struct CartView: View {
 
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
-        CartView()
+        //        CartView()
+        CartView().environmentObject({ () -> Order in
+            let enviromentObject = Order()
+            enviromentObject.orderItems = MockData.sampleItems
+            return enviromentObject
+        } () )
     }
+//}
 }

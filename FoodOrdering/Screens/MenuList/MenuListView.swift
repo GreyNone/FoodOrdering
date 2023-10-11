@@ -24,10 +24,14 @@ struct MenuListView: View {
                     }
             }
             .navigationTitle("Menu List")
+            .listStyle(.plain)
         }
         .onAppear() {
             menuListViewModel.getMenuItems(menuType: menuListViewModel.currentMenuType)
         }
+//        .task {
+//            <#code#>
+//        }
         .sheet(isPresented: $menuListViewModel.isShowingDetailView) {
             ItemDetailView(menuItem: menuListViewModel.selectedMenuItem ?? MenuItem(),
                            isShowingDetailView: $menuListViewModel.isShowingDetailView)
