@@ -13,28 +13,31 @@ struct MenuListView: View {
     
     var body: some View {
         NavigationStack {
-//            SegmentedView()
-            List(menuListViewModel.menuItems) { item in
-                MenuListCell(menuItem: item)
-                    .onTapGesture {
-                        menuListViewModel.selectedMenuItem = item
-                    }
-                    .onAppear() {
-                        menuListViewModel.getMoreMenuItems(currentMenuItem: item)
-                    }
+            ZStack {
+                List(menuListViewModel.menuItems) { item in
+                    MenuListCell(menuItem: item)
+                        .onTapGesture {
+                            menuListViewModel.selectedMenuItem = item
+                        }
+                        .onAppear() {
+                            menuListViewModel.getMoreMenuItems(currentMenuItem: item)
+                        }
+                }
+                .listStyle(.plain)
+                
+                if menuListViewModel.menuItems.isEmpty {
+                    EmptyFoodView(menuListViewModel: menuListViewModel)
+                }
             }
-            .navigationTitle("Menu List")
-            .listStyle(.plain)
         }
+        .navigationTitle("Menu List")
         .onAppear() {
             menuListViewModel.getMenuItems(menuType: menuListViewModel.currentMenuType)
         }
-//        .task {
-//            <#code#>
-//        }
         .sheet(isPresented: $menuListViewModel.isShowingDetailView) {
-            ItemDetailView(menuItem: menuListViewModel.selectedMenuItem ?? MenuItem(),
-                           isShowingDetailView: $menuListViewModel.isShowingDetailView)
+            ItemDetailView(itemDetailViewModel:
+                            ItemDetailViewModel(menuItem: menuListViewModel.selectedMenuItem ?? MockData.firstSampleItem,
+                                                isShowingDetailView: $menuListViewModel.isShowingDetailView))
         }
     }
 }

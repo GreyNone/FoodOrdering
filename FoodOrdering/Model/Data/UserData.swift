@@ -18,3 +18,4 @@ struct UserData: Codable {
     var apartment = ""
     
 }
+

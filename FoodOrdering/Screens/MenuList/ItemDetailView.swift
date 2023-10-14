@@ -9,46 +9,41 @@ import SwiftUI
 
 struct ItemDetailView: View {
     
-    var menuItem: MenuItem
-    @Binding var isShowingDetailView: Bool
-    @State var itemInformation: MenuItemInformation? = nil
     @EnvironmentObject var order: Order
+    @ObservedObject var itemDetailViewModel: ItemDetailViewModel
     
     var body: some View {
         VStack(spacing: 15) {
-            MenuItemImage(imageUrl: menuItem.image ?? "")
+            MenuItemImage(imageUrl: itemDetailViewModel.menuItem.image ?? "")
                 .aspectRatio(contentMode: .fit)
                 .frame(width: 300, height: 170)
             
-            Text(menuItem.title ?? "")
+            Text(itemDetailViewModel.menuItem.title ?? "")
                 .fixedSize(horizontal: false, vertical: true)
                 .font(.title2)
                 .fontWeight(.bold)
             
-            List(itemInformation?.nutrition?.nutrients ?? [Nutrient]()) { nutrient in
-                NutrientsView(nutrient: nutrient)
+            List(itemDetailViewModel.itemInformation?.nutrition?.nutrients ?? [Nutrient]()) { nutrient in
+                NutrientViewCell(nutrient: nutrient)
             }
             .listStyle(.plain)
             
-            Text("Calories: \(itemInformation?.nutrition?.calories ?? 0.0, specifier: "%.1f")")
+            Text("Calories: \(itemDetailViewModel.itemInformation?.nutrition?.calories ?? 0.0, specifier: "%.1f")")
             
             Button {
-                order.addToOrder(item: menuItem)
-                isShowingDetailView = false
+                itemDetailViewModel.order?.addToOrder(item: itemDetailViewModel.menuItem)
+                itemDetailViewModel.isShowingDetailView.wrappedValue = false
             } label: {
-                AddToCartButton(text: "Add To Cart - \((itemInformation?.price ?? 10.0), specifier: "%.2f") $")
-            }
-            
+                MainButton(text: "Add To Cart - \((itemDetailViewModel.itemInformation?.price ?? 10.0), specifier: "%.2f") $")
+            } 
             .onAppear() {
-                NetworkManager.shared.loadMenuItemInformation(itemId: menuItem.id ?? 1) {
-                    fetchedMenuItemInformation in
-                    self.itemInformation = fetchedMenuItemInformation
-                }
+                itemDetailViewModel.getItemDetails()
+                itemDetailViewModel.order = order
             }
         }
         .overlay(alignment: .topTrailing) {
             Button {
-                isShowingDetailView = false
+                itemDetailViewModel.isShowingDetailView.wrappedValue = false
             } label: {
                 DismissButton()
             }
@@ -59,7 +54,13 @@ struct ItemDetailView: View {
 
 struct ItemDetailView_Previews: PreviewProvider {
     static var previews: some View {
-        ItemDetailView(menuItem: MockData.sampleItem, isShowingDetailView: .constant(false))
+        ItemDetailView(itemDetailViewModel: ItemDetailViewModel(menuItem: MockData.firstSampleItem,
+                                                                isShowingDetailView: .constant(false)))
+        .environmentObject({ () -> Order in
+            let enviromentObject = Order()
+            enviromentObject.orderItems = MockData.sampleItems
+            return enviromentObject
+        } () )
             .preferredColorScheme(.dark)
     }
 }

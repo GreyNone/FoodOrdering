@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct AddToCartButton: View {
+struct MainButton: View {
     
     var text: LocalizedStringKey
     
@@ -22,8 +22,8 @@ struct AddToCartButton: View {
     }
 }
 
-struct AddToCartButton_Previews: PreviewProvider {
+struct MainButton_Previews: PreviewProvider {
     static var previews: some View {
-        AddToCartButton(text: "Add To Cart - 10.5 $")
+        MainButton(text: "Add To Cart - 10.5 $")
     }
 }

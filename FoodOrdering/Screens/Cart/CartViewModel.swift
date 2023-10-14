@@ -7,8 +7,9 @@
 
 import SwiftUI
 
-//final class CartViewModel: ObservableObject {
-//
-//    @EnvironmentObject var order: Order
-//
-//}
+final class CartViewModel: ObservableObject {
+
+    var order: Order?
+    @Published var isShowingCheckOutView = false
+    
+}

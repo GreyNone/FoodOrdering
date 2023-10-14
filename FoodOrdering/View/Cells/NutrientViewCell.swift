@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct NutrientsView: View {
+struct NutrientViewCell: View {
     
     var nutrient: Nutrient
     
@@ -38,8 +38,8 @@ struct NutrientsView: View {
     }
 }
 
-struct NutrientsView_Previews: PreviewProvider {
+struct NutrientView_Previews: PreviewProvider {
     static var previews: some View {
-        NutrientsView(nutrient: MockData.sampleNutrient)
+        NutrientViewCell(nutrient: MockData.sampleNutrient)
     }
 }

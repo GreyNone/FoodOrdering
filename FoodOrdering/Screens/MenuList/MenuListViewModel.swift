@@ -13,13 +13,13 @@ final class MenuListViewModel: ObservableObject {
     @Published var isShowingDetailView = false
     private var menuType: [MoyaService] = [.burger, .pizza, .sushi]
     private var currentTypeIndex = 0
+    var currentMenuType: MoyaService {
+        menuType[currentTypeIndex]
+    }
     var selectedMenuItem: MenuItem? {
         didSet {
             isShowingDetailView = true
         }
-    }
-    var currentMenuType: MoyaService {
-        menuType[currentTypeIndex]
     }
     
     func getMenuItems(menuType: MoyaService) {

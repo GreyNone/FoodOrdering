@@ -10,8 +10,8 @@ import SwiftUI
 struct CartView: View {
     
     @EnvironmentObject var order: Order
-//    @StateObject var cartViewModel = CartViewModel()
-    
+    @ObservedObject var cartViewModel = CartViewModel()
+
     var body: some View {
         NavigationStack {
             ZStack {
@@ -21,15 +21,15 @@ struct CartView: View {
                             MenuListCell(menuItem: item)
                         }
                         .onDelete { indexSet in
-                            order.removeFromOrder(offsets: indexSet)
+                            cartViewModel.order?.removeFromOrder(offsets: indexSet)
                         }
                     }
                     .listStyle(.plain)
                     
                     Button {
-                        
+                        cartViewModel.isShowingCheckOutView = true
                     } label: {
-                        AddToCartButton(text: "Check out order - \(order.totalOrderPrice , specifier: "%.2f") $")
+                        MainButton(text: "Check out order - \(order.totalOrderPrice , specifier: "%.2f") $")
                     }
                     .padding(.bottom, 25)
                 }
@@ -39,18 +39,22 @@ struct CartView: View {
                 }
             }
             .navigationTitle("Your Order")
+            .navigationDestination(isPresented: $cartViewModel.isShowingCheckOutView) {
+                CheckOutView()
+            }
+            .onAppear() {
+                cartViewModel.order = order
+            }
         }
     }
 }
 
 struct CartView_Previews: PreviewProvider {
     static var previews: some View {
-        //        CartView()
         CartView().environmentObject({ () -> Order in
             let enviromentObject = Order()
             enviromentObject.orderItems = MockData.sampleItems
             return enviromentObject
         } () )
     }
-//}
 }

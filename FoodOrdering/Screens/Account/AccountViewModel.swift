@@ -48,7 +48,7 @@ final class AccountViewModel: ObservableObject {
             return false
         }
         
-        guard !userData.email.isEmpty else {
+        guard userData.email.isValidEmailFormat else {
             alertItem = AlertType.emailAlert
             isShowingAlert = true
             return false

@@ -9,9 +9,6 @@ import SwiftUI
 
 struct AccountView: View {
     
-    enum FocusedField {
-        case firstName, lastName, phoneNumber, email, streetAddress, floor, apartment
-    }
     @StateObject var viewModel = AccountViewModel()
     @FocusState private var focusStateTextField: FocusedField?
     
@@ -62,7 +59,7 @@ struct AccountView: View {
                                 focusStateTextField = .floor
                             }
                             .submitLabel(.next)
-                        
+
                         TextField("Floor", text: $viewModel.userData.floor)
                             .focused($focusStateTextField, equals: .floor)
                             .onSubmit {
@@ -70,7 +67,7 @@ struct AccountView: View {
                             }
                             .submitLabel(.next)
                             .keyboardType(.namePhonePad)
-                        
+
                         TextField("Apartment", text: $viewModel.userData.apartment)
                             .focused($focusStateTextField, equals: .apartment)
                             .onSubmit {

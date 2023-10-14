@@ -29,11 +29,10 @@ struct MenuListCell: View {
         }
         .listRowSeparator(.hidden)
     }
-    
 }
 
 struct MenuListCell_Previews: PreviewProvider {
     static var previews: some View {
-        MenuListCell(menuItem: MockData.sampleItem)
+        MenuListCell(menuItem: MockData.firstSampleItem)
     }
 }
