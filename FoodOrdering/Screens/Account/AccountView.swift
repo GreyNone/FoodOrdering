@@ -9,29 +9,30 @@ import SwiftUI
 
 struct AccountView: View {
     
-    @StateObject var viewModel = AccountViewModel()
+    @StateObject var accountViewModel = AccountViewModel()
     @FocusState private var focusStateTextField: FocusedField?
+    @EnvironmentObject var user: User
     
     var body: some View {
         NavigationStack {
             VStack {
                 Form {
                     Section {
-                        TextField("Your First Name", text: $viewModel.userData.firstName)
+                        TextField("Your First Name", text: $user.userData.firstName)
                             .focused($focusStateTextField, equals: .firstName)
                             .onSubmit {
                                 focusStateTextField = .lastName
                             }
                             .submitLabel(.next)
-                        
-                        TextField("Your Last Name", text: $viewModel.userData.lastName)
+                                    
+                        TextField("Your Last Name", text:  $user.userData.lastName)
                             .focused($focusStateTextField, equals: .lastName)
                             .onSubmit {
                                 focusStateTextField = .email
                             }
                             .submitLabel(.next)
                         
-                        TextField("Your Email", text: $viewModel.userData.email)
+                        TextField("Your Email", text:  $user.userData.email)
                             .focused($focusStateTextField, equals: .email)
                             .onSubmit {
                                 focusStateTextField = .phoneNumber
@@ -41,7 +42,7 @@ struct AccountView: View {
                             .keyboardType(.emailAddress)
                             .autocorrectionDisabled()
                         
-                        TextField("Your Phone Number", text: $viewModel.userData.phoneNumber)
+                        TextField("Your Phone Number", text:  $user.userData.phoneNumber)
                             .focused($focusStateTextField, equals: .phoneNumber)
                             .onSubmit {
                                 focusStateTextField = nil
@@ -53,14 +54,14 @@ struct AccountView: View {
                     }
                     
                     Section {
-                        TextField("Street Address", text: $viewModel.userData.streetAddress)
+                        TextField("Street Address", text:  $user.userData.streetAddress)
                             .focused($focusStateTextField, equals: .streetAddress)
                             .onSubmit {
                                 focusStateTextField = .floor
                             }
                             .submitLabel(.next)
 
-                        TextField("Floor", text: $viewModel.userData.floor)
+                        TextField("Floor", text:  $user.userData.floor)
                             .focused($focusStateTextField, equals: .floor)
                             .onSubmit {
                                 focusStateTextField = .apartment
@@ -68,7 +69,7 @@ struct AccountView: View {
                             .submitLabel(.next)
                             .keyboardType(.namePhonePad)
 
-                        TextField("Apartment", text: $viewModel.userData.apartment)
+                        TextField("Apartment", text:  $user.userData.apartment)
                             .focused($focusStateTextField, equals: .apartment)
                             .onSubmit {
                                 focusStateTextField = nil
@@ -81,7 +82,7 @@ struct AccountView: View {
                 }
                 
                 Button {
-                    viewModel.saveUserData()
+                    accountViewModel.saveUserData()
                 } label: {
                     ConfirmButton()
                 }
@@ -90,10 +91,10 @@ struct AccountView: View {
                 .navigationTitle("Your Account")
             }
             .onAppear() {
-                viewModel.getUserData()
+                accountViewModel.user = user
             }
-            .alert(isPresented: $viewModel.isShowingAlert) {
-                guard let alert = viewModel.alertItem else {
+            .alert(isPresented: $accountViewModel.isShowingAlert) {
+                guard let alert = accountViewModel.alertItem else {
                     return Alert(title: Text("Error"),
                                  message: Text(""),
                                  dismissButton: .default(Text("OK")))

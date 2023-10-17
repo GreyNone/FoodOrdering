@@ -9,54 +9,37 @@ import SwiftUI
 
 final class AccountViewModel: ObservableObject {
     
-    @AppStorage("userData") private var storage: Data?
-    @Published var userData = UserData()
     @Published var alertItem: AlertItem?
     @Published var isShowingAlert = false
+    var user: User?
     
     func saveUserData() {
         guard isValid else { return }
-
-        do {
-            let data = try JSONEncoder().encode(userData)
-            storage = data
-            alertItem = AlertType.saveSuccessAlert
-            isShowingAlert = true
-        } catch {
-            alertItem = AlertType.saveErrorAlert
-            isShowingAlert = true
-        }
-    }
-
-    func getUserData() {
-        guard let storage = storage else { return }
-
-        do {
-            userData = try JSONDecoder().decode(UserData.self, from: storage)
-        } catch {
-            alertItem = AlertType.retrieveErrorAlert
-            isShowingAlert = true
-        }
+        
+        let resultAlertItem = user?.saveUserData()
+        alertItem = resultAlertItem
+        isShowingAlert = true
     }
     
     private var isValid: Bool {
-        guard !userData.firstName.isEmpty &&
-                !userData.lastName.isEmpty &&
-                !userData.phoneNumber.isEmpty else {
+        guard let user = user else { return false }
+        guard !user.userData.firstName.isEmpty &&
+                !user.userData.lastName.isEmpty &&
+                !user.userData.phoneNumber.isEmpty else {
             alertItem = AlertType.formAlert
             isShowingAlert = true
             return false
         }
         
-        guard userData.email.isValidEmailFormat else {
+        guard user.userData.email.isValidEmailFormat else {
             alertItem = AlertType.emailAlert
             isShowingAlert = true
             return false
         }
         
-        guard !userData.streetAddress.isEmpty &&
-                !userData.floor.isEmpty &&
-                !userData.apartment.isEmpty else {
+        guard !user.userData.streetAddress.isEmpty &&
+                !user.userData.floor.isEmpty &&
+                !user.userData.apartment.isEmpty else {
             alertItem = AlertType.addressAlert
             isShowingAlert = true
             return false

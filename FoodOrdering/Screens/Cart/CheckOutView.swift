@@ -10,22 +10,23 @@ import SwiftUI
 struct CheckOutView: View {
     
     @StateObject var checkOutViewModel = CheckOutViewModel()
-    @EnvironmentObject var order: Order
     @FocusState private var focusStateTextField: FocusedField?
+    @EnvironmentObject var order: Order
+    @EnvironmentObject var user: User
     
     var body: some View {
         NavigationStack {
             VStack {
                 Form {
                     Section {
-                        TextField("Street", text: $checkOutViewModel.userData.streetAddress)
+                        TextField("Street", text: $user.userData.streetAddress)
                             .focused($focusStateTextField, equals: .streetAddress)
                             .onSubmit {
                                 focusStateTextField = .floor
                             }
                             .submitLabel(.next)
                         
-                        TextField("Floor", text: $checkOutViewModel.userData.apartment)
+                        TextField("Floor", text: $user.userData.apartment)
                             .focused($focusStateTextField, equals: .floor)
                             .onSubmit {
                                 focusStateTextField = .apartment
@@ -33,7 +34,7 @@ struct CheckOutView: View {
                             .submitLabel(.next)
                             .keyboardType(.namePhonePad)
                         
-                        TextField("Apartment", text: $checkOutViewModel.userData.floor)
+                        TextField("Apartment", text: $user.userData.floor)
                             .focused($focusStateTextField, equals: .apartment)
                             .onSubmit {
                                 focusStateTextField = nil
@@ -48,7 +49,7 @@ struct CheckOutView: View {
                 .formStyle(.columns)
                 
                 List() {
-                    ForEach(checkOutViewModel.order?.orderItems ?? MockData.sampleItems) { item in
+                    ForEach(order.orderItems) { item in
                         MenuListCell(menuItem: item)
                     }
                 }
@@ -64,8 +65,8 @@ struct CheckOutView: View {
             }
             .navigationTitle("Check Out")
             .onAppear() {
-                checkOutViewModel.getUserData()
                 checkOutViewModel.order = order
+                checkOutViewModel.user = user
             }
         }
     }
@@ -74,9 +75,15 @@ struct CheckOutView: View {
 
 struct CheckOutView_Previews: PreviewProvider {
     static var previews: some View {
-        CheckOutView().environmentObject({ () -> Order in
+        CheckOutView()
+            .environmentObject({ () -> Order in
             let enviromentObject = Order()
             enviromentObject.orderItems = MockData.sampleItems
+            return enviromentObject
+        } () )
+        .environmentObject({ () -> User in
+            let enviromentObject = User()
+            enviromentObject.userData = UserData()
             return enviromentObject
         } () )
     }

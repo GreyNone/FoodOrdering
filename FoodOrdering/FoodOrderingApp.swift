@@ -11,10 +11,16 @@ import SwiftUI
 struct FoodOrderingApp: App {
     
     var order = Order()
+    var user = User()
     
     var body: some Scene {
         WindowGroup {
-            FoodOrderingTabView().environmentObject(order)
+            FoodOrderingTabView()
+                .environmentObject(order)
+                .environmentObject(user)
+                .onAppear() {
+                    user.getUserData()
+                }
         }
     }
 }

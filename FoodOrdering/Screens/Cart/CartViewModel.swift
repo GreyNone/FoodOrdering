@@ -11,5 +11,4 @@ final class CartViewModel: ObservableObject {
 
     var order: Order?
     @Published var isShowingCheckOutView = false
-    
 }
